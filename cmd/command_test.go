@@ -32,7 +32,7 @@ func TestInstanceCommand(t *testing.T) {
 
 	assert.Contains(t, commandNames, "create")
 	assert.Contains(t, commandNames, "list")
-	assert.Contains(t, commandNames, "get <id>")
+	assert.Contains(t, commandNames, "get --id <id>")
 	assert.Contains(t, commandNames, "update <id>")
 	assert.Contains(t, commandNames, "delete <id>")
 	assert.Contains(t, commandNames, "resize <id>")
@@ -54,7 +54,7 @@ func TestVPCCommand(t *testing.T) {
 
 	assert.Contains(t, commandNames, "create")
 	assert.Contains(t, commandNames, "list")
-	assert.Contains(t, commandNames, "get <id>")
+	assert.Contains(t, commandNames, "get --id <id>")
 	assert.Contains(t, commandNames, "update <id>")
 	assert.Contains(t, commandNames, "delete <id>")
 }
@@ -166,28 +166,6 @@ func TestEnvironmentVariablePrecedence(t *testing.T) {
 	assert.Equal(t, "env-key", apiKey)
 }
 
-func TestInstanceManageCommand(t *testing.T) {
-	cmd := instanceManageCmd
-
-	assert.Equal(t, "manage <instance_id>", cmd.Use)
-	assert.Contains(t, cmd.Long, "instance-specific API")
-	assert.Contains(t, cmd.Long, "Instance API keys are automatically saved")
-
-	// Check that it has args requirement (we can't directly compare functions)
-	assert.NotNil(t, cmd.Args)
-
-	// Check subcommands
-	subcommands := cmd.Commands()
-	commandNames := make([]string, len(subcommands))
-	for i, subcmd := range subcommands {
-		commandNames[i] = subcmd.Use
-	}
-
-	assert.Contains(t, commandNames, "nodes")
-	assert.Contains(t, commandNames, "plugins")
-	assert.Contains(t, commandNames, "actions")
-	assert.Contains(t, commandNames, "account")
-}
 
 func TestInstanceActionsCommand(t *testing.T) {
 	cmd := instanceActionsCmd
@@ -200,20 +178,20 @@ func TestInstanceActionsCommand(t *testing.T) {
 	}
 
 	expectedActions := []string{
-		"restart-rabbitmq",
-		"restart-cluster",
-		"restart-management",
-		"stop",
-		"start",
-		"reboot",
-		"stop-cluster",
-		"start-cluster",
-		"upgrade-erlang",
-		"upgrade-rabbitmq",
-		"upgrade-all",
-		"toggle-hipe",
-		"toggle-firehose",
-		"upgrade-versions",
+		"restart-rabbitmq --id <instance_id>",
+		"restart-cluster --id <instance_id>",
+		"restart-management --id <instance_id>",
+		"stop --id <instance_id>",
+		"start --id <instance_id>",
+		"reboot --id <instance_id>",
+		"stop-cluster --id <instance_id>",
+		"start-cluster --id <instance_id>",
+		"upgrade-erlang --id <instance_id>",
+		"upgrade-rabbitmq --id <instance_id>",
+		"upgrade-all --id <instance_id>",
+		"toggle-hipe --id <instance_id>",
+		"toggle-firehose --id <instance_id>",
+		"upgrade-versions --id <instance_id>",
 	}
 
 	for _, action := range expectedActions {
