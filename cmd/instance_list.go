@@ -38,10 +38,10 @@ var instanceListCmd = &cobra.Command{
 
 		// Print instance data
 		for _, instance := range instances {
-			fmt.Printf("%-10d %-20s %-15s %-30s\n", 
-				instance.ID, 
-				instance.Name, 
-				instance.Plan, 
+			fmt.Printf("%-10d %-20s %-15s %-30s\n",
+				instance.ID,
+				instance.Name,
+				instance.Plan,
 				instance.Region)
 		}
 

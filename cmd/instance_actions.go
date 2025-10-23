@@ -381,12 +381,12 @@ func init() {
 		upgradeErlangCmd, upgradeRabbitMQCmd, upgradeRabbitMQErlangCmd,
 		toggleHiPECmd, toggleFirehoseCmd, upgradeVersionsCmd,
 	}
-	
+
 	for _, cmd := range commands {
 		cmd.Flags().StringP("id", "", "", "Instance ID (required)")
 		cmd.MarkFlagRequired("id")
 	}
-	
+
 	// Add node flags where applicable
 	restartRabbitMQCmd.Flags().String("nodes", "", "Comma-separated list of node names")
 	restartManagementCmd.Flags().String("nodes", "", "Comma-separated list of node names")

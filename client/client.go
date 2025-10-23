@@ -134,11 +134,11 @@ func (c *Client) ListPlugins(instanceID string) ([]Plugin, error) {
 
 func (c *Client) EnablePlugin(instanceID, pluginName string) error {
 	endpoint := "/instances/" + instanceID + "/plugins"
-	
+
 	requestBody := map[string]string{
 		"plugin_name": pluginName,
 	}
-	
+
 	_, err := c.makeRequest("POST", endpoint, requestBody)
 	return err
 }

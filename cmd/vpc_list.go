@@ -38,9 +38,9 @@ var vpcListCmd = &cobra.Command{
 
 		// Print VPC data
 		for _, vpc := range vpcs {
-			fmt.Printf("%-20s %-18s %-30s\n", 
-				vpc.Name, 
-				vpc.Subnet, 
+			fmt.Printf("%-20s %-18s %-30s\n",
+				vpc.Name,
+				vpc.Subnet,
 				vpc.Region)
 		}
 

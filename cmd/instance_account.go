@@ -83,10 +83,10 @@ func init() {
 	// Add --id flag to both account commands
 	rotatePasswordCmd.Flags().StringP("id", "", "", "Instance ID (required)")
 	rotatePasswordCmd.MarkFlagRequired("id")
-	
+
 	rotateInstanceAPIKeyCmd.Flags().StringP("id", "", "", "Instance ID (required)")
 	rotateInstanceAPIKeyCmd.MarkFlagRequired("id")
-	
+
 	instanceAccountCmd.AddCommand(rotatePasswordCmd)
 	instanceAccountCmd.AddCommand(rotateInstanceAPIKeyCmd)
 }

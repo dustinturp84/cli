@@ -71,7 +71,6 @@ func loadAPIKey() (string, error) {
 	return strings.TrimSpace(string(data)), nil
 }
 
-
 func readPassword() (string, error) {
 	if term.IsTerminal(int(syscall.Stdin)) {
 		// Terminal input - hide password

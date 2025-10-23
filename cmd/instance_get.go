@@ -39,7 +39,6 @@ var instanceGetCmd = &cobra.Command{
 			return err
 		}
 
-
 		// Format output as "Name = Value"
 		fmt.Printf("Name = %s\n", instance.Name)
 		fmt.Printf("Plan = %s\n", instance.Plan)
@@ -51,7 +50,7 @@ var instanceGetCmd = &cobra.Command{
 			ready = "Yes"
 		}
 		fmt.Printf("Ready = %s\n", ready)
-		
+
 		return nil
 	},
 }

@@ -132,13 +132,13 @@ func init() {
 	// Add --id flag to all plugins commands
 	instancePluginsListCmd.Flags().StringP("id", "", "", "Instance ID (required)")
 	instancePluginsListCmd.MarkFlagRequired("id")
-	
+
 	instancePluginsEnableCmd.Flags().StringP("id", "", "", "Instance ID (required)")
 	instancePluginsEnableCmd.MarkFlagRequired("id")
-	
+
 	instancePluginsDisableCmd.Flags().StringP("id", "", "", "Instance ID (required)")
 	instancePluginsDisableCmd.MarkFlagRequired("id")
-	
+
 	// Add all commands to plugins
 	instancePluginsCmd.AddCommand(instancePluginsListCmd)
 	instancePluginsCmd.AddCommand(instancePluginsEnableCmd)

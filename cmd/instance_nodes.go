@@ -62,11 +62,11 @@ var instanceNodesListCmd = &cobra.Command{
 				running = "Yes"
 			}
 			totalDisk := node.DiskSize + node.AdditionalDiskSize
-			fmt.Printf("%-20s %-12s %-10s %-10dGB %-15s\n", 
-				node.Name, 
-				configured, 
-				running, 
-				totalDisk, 
+			fmt.Printf("%-20s %-12s %-10s %-10dGB %-15s\n",
+				node.Name,
+				configured,
+				running,
+				totalDisk,
 				node.RabbitMQVersion)
 		}
 
@@ -110,10 +110,10 @@ func init() {
 	// Add --id flag to all subcommands
 	instanceNodesListCmd.Flags().StringP("id", "", "", "Instance ID (required)")
 	instanceNodesListCmd.MarkFlagRequired("id")
-	
+
 	instanceNodesVersionsCmd.Flags().StringP("id", "", "", "Instance ID (required)")
 	instanceNodesVersionsCmd.MarkFlagRequired("id")
-	
+
 	instanceNodesCmd.AddCommand(instanceNodesListCmd)
 	instanceNodesCmd.AddCommand(instanceNodesVersionsCmd)
 }
