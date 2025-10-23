@@ -166,7 +166,6 @@ func TestEnvironmentVariablePrecedence(t *testing.T) {
 	assert.Equal(t, "env-key", apiKey)
 }
 
-
 func TestInstanceActionsCommand(t *testing.T) {
 	cmd := instanceActionsCmd
 
