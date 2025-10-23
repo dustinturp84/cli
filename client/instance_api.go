@@ -68,7 +68,13 @@ func (c *InstanceAPIClient) makeRequest(method, endpoint string, body interface{
 			Error string `json:"error"`
 		}
 		if err := json.Unmarshal(respBody, &errorResp); err == nil && errorResp.Error != "" {
+			if resp.StatusCode == 401 {
+				return nil, fmt.Errorf("API error (401): Not authorized - The instance management API may not be available for your current plan, or additional setup may be required. Please contact support or upgrade your plan for access to management features")
+			}
 			return nil, fmt.Errorf("API error (%d): %s", resp.StatusCode, errorResp.Error)
+		}
+		if resp.StatusCode == 401 {
+			return nil, fmt.Errorf("API error (401): Not authorized - The instance management API may not be available for your current plan, or additional setup may be required. Please contact support or upgrade your plan for access to management features")
 		}
 		return nil, fmt.Errorf("API error (%d): %s", resp.StatusCode, string(respBody))
 	}
@@ -259,4 +265,24 @@ func (c *InstanceAPIClient) GetUpgradeVersions() (map[string]string, error) {
 	}
 
 	return versions, nil
+}
+
+// RabbitMQ Config operations
+func (c *InstanceAPIClient) GetRabbitMQConfig() (map[string]interface{}, error) {
+	respBody, err := c.makeRequest("GET", "/config", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	var config map[string]interface{}
+	if err := json.Unmarshal(respBody, &config); err != nil {
+		return nil, err
+	}
+
+	return config, nil
+}
+
+func (c *InstanceAPIClient) UpdateRabbitMQConfig(config map[string]interface{}) error {
+	_, err := c.makeRequest("PUT", "/config", config)
+	return err
 }
