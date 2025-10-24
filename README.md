@@ -132,43 +132,30 @@ cloudamqp instance config set --id 1234 --key tcp_listen_options --value '[{"por
 
 ```bash
 # Restart RabbitMQ
-cloudamqp instance actions restart-rabbitmq --id 1234
-cloudamqp instance actions restart-rabbitmq --id 1234 --nodes=node1,node2
+cloudamqp instance restart-rabbitmq --id 1234
+cloudamqp instance restart-rabbitmq --id 1234 --nodes=node1,node2
 
 # Cluster operations
-cloudamqp instance actions restart-cluster --id 1234
-cloudamqp instance actions stop-cluster --id 1234
-cloudamqp instance actions start-cluster --id 1234
+cloudamqp instance restart-cluster --id 1234
+cloudamqp instance stop-cluster --id 1234
+cloudamqp instance start-cluster --id 1234
 
 # Instance lifecycle
-cloudamqp instance actions stop --id 1234
-cloudamqp instance actions start --id 1234
-cloudamqp instance actions reboot --id 1234
+cloudamqp instance stop --id 1234
+cloudamqp instance start --id 1234
+cloudamqp instance reboot --id 1234
 
 # Management interface
-cloudamqp instance actions restart-management --id 1234
+cloudamqp instance restart-management --id 1234
 
 # Upgrades (asynchronous operations)
-cloudamqp instance actions upgrade-erlang --id 1234
-cloudamqp instance actions upgrade-rabbitmq --id 1234 --version=3.10.7
-cloudamqp instance actions upgrade-all --id 1234
+cloudamqp instance upgrade-erlang --id 1234
+cloudamqp instance upgrade-rabbitmq --id 1234 --version=3.10.7
+cloudamqp instance upgrade-all --id 1234
 
 # Get target upgrade versions
-cloudamqp instance actions upgrade-versions --id 1234
+cloudamqp instance upgrade-versions --id 1234
 
-# Toggle features
-cloudamqp instance actions toggle-hipe --id 1234 --enable=true
-cloudamqp instance actions toggle-firehose --id 1234 --enable=true --vhost=/
-```
-
-#### Account Operations
-
-```bash
-# Rotate instance password
-cloudamqp instance account rotate-password --id 1234
-
-# Rotate instance API key
-cloudamqp instance account rotate-apikey --id 1234
 ```
 
 ### Informational Commands
@@ -205,9 +192,6 @@ cloudamqp team remove --email=user@example.com
 # Export audit log
 cloudamqp audit
 cloudamqp audit --timestamp=2024-01
-
-# Rotate main API key
-cloudamqp rotate-key
 ```
 
 ## Examples
@@ -231,10 +215,10 @@ cloudamqp instance config list --id 1234
 cloudamqp instance plugins list --id 1234
 
 # 6. Restart RabbitMQ
-cloudamqp instance actions restart-rabbitmq --id 1234
+cloudamqp instance restart-rabbitmq --id 1234
 
 # 7. Upgrade when needed
-cloudamqp instance actions upgrade-all --id 1234
+cloudamqp instance upgrade-all --id 1234
 ```
 
 ### Team Setup
@@ -302,7 +286,7 @@ INSTANCE_ID=$(echo "$RESULT" | jq -r '.id')
 cloudamqp instance get --id "$INSTANCE_ID"
 
 # Perform operations
-cloudamqp instance actions restart-rabbitmq --id "$INSTANCE_ID"
+cloudamqp instance restart-rabbitmq --id "$INSTANCE_ID"
 
 # Cleanup
 cloudamqp instance delete --id "$INSTANCE_ID" --force

@@ -134,10 +134,6 @@ cloudamqp regions [--provider=<provider>]
 cloudamqp audit [--timestamp=<timestamp>]
 ```
 
-#### Rotate API Key
-```bash
-cloudamqp rotate-key
-```
 
 ## Instance-Specific Operations
 
@@ -182,47 +178,33 @@ cloudamqp instance config set --id <id> --key <config_key> --value <config_value
 
 ### Account Operations
 
-#### Rotate Instance Password
-```bash
-cloudamqp instance account rotate-password --id <id>
-```
-
-#### Rotate Instance API Key
-```bash
-cloudamqp instance account rotate-apikey --id <id>
-```
 
 ### Instance Actions
 
 #### Restart Operations
 ```bash
-cloudamqp instance actions restart-rabbitmq --id <id> [--nodes=node1,node2]
-cloudamqp instance actions restart-cluster --id <id>
-cloudamqp instance actions restart-management --id <id> [--nodes=node1,node2]
+cloudamqp instance restart-rabbitmq --id <id> [--nodes=node1,node2]
+cloudamqp instance restart-cluster --id <id>
+cloudamqp instance restart-management --id <id> [--nodes=node1,node2]
 ```
 
 #### Start/Stop Operations
 ```bash
-cloudamqp instance actions start --id <id> [--nodes=node1,node2]
-cloudamqp instance actions stop --id <id> [--nodes=node1,node2]
-cloudamqp instance actions reboot --id <id> [--nodes=node1,node2]
-cloudamqp instance actions start-cluster --id <id>
-cloudamqp instance actions stop-cluster --id <id>
+cloudamqp instance start --id <id> [--nodes=node1,node2]
+cloudamqp instance stop --id <id> [--nodes=node1,node2]
+cloudamqp instance reboot --id <id> [--nodes=node1,node2]
+cloudamqp instance start-cluster --id <id>
+cloudamqp instance stop-cluster --id <id>
 ```
 
 #### Upgrade Operations
 ```bash
-cloudamqp instance actions upgrade-erlang --id <id>
-cloudamqp instance actions upgrade-rabbitmq --id <id> --version=<version>
-cloudamqp instance actions upgrade-all --id <id>
-cloudamqp instance actions upgrade-versions --id <id>  # Check available versions
+cloudamqp instance upgrade-erlang --id <id>
+cloudamqp instance upgrade-rabbitmq --id <id> --version=<version>
+cloudamqp instance upgrade-all --id <id>
+cloudamqp instance upgrade-versions --id <id>  # Check available versions
 ```
 
-#### Feature Toggle Operations
-```bash
-cloudamqp instance actions toggle-hipe --id <id> --enable=true/false [--nodes=node1,node2]
-cloudamqp instance actions toggle-firehose --id <id> --enable=true/false --vhost=<vhost>
-```
 
 ## Common Usage Patterns
 
@@ -253,8 +235,8 @@ cloudamqp instance nodes list --id <id>
 cloudamqp instance config list --id <id>
 
 # Perform maintenance
-cloudamqp instance actions restart-rabbitmq --id <id>
-cloudamqp instance actions upgrade-all --id <id>
+cloudamqp instance restart-rabbitmq --id <id>
+cloudamqp instance upgrade-all --id <id>
 ```
 
 ### 4. Configuration Management

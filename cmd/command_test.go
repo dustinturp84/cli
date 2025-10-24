@@ -36,7 +36,6 @@ func TestInstanceCommand(t *testing.T) {
 	assert.Contains(t, commandNames, "update <id>")
 	assert.Contains(t, commandNames, "delete <id>")
 	assert.Contains(t, commandNames, "resize <id>")
-	assert.Contains(t, commandNames, "manage <instance_id>")
 }
 
 func TestVPCCommand(t *testing.T) {
@@ -167,9 +166,9 @@ func TestEnvironmentVariablePrecedence(t *testing.T) {
 }
 
 func TestInstanceActionsCommand(t *testing.T) {
-	cmd := instanceActionsCmd
+	cmd := instanceCmd
 
-	// Check that actions command has all expected subcommands
+	// Check that action commands are now directly under instance command
 	subcommands := cmd.Commands()
 	commandNames := make([]string, len(subcommands))
 	for i, subcmd := range subcommands {
@@ -188,8 +187,6 @@ func TestInstanceActionsCommand(t *testing.T) {
 		"upgrade-erlang --id <instance_id>",
 		"upgrade-rabbitmq --id <instance_id>",
 		"upgrade-all --id <instance_id>",
-		"toggle-hipe --id <instance_id>",
-		"toggle-firehose --id <instance_id>",
 		"upgrade-versions --id <instance_id>",
 	}
 
@@ -207,24 +204,6 @@ func TestUpgradeRabbitMQCommand_RequiredFlag(t *testing.T) {
 
 	// This would normally be tested with actual command execution,
 	// but that requires complex mocking of the API client
-}
-
-func TestToggleCommands_RequiredFlags(t *testing.T) {
-	// Test HiPE toggle command
-	hipeCmd := toggleHiPECmd
-	enableFlag := hipeCmd.Flag("enable")
-	assert.NotNil(t, enableFlag)
-
-	nodesFlag := hipeCmd.Flag("nodes")
-	assert.NotNil(t, nodesFlag)
-
-	// Test Firehose toggle command
-	firehoseCmd := toggleFirehoseCmd
-	enableFlag = firehoseCmd.Flag("enable")
-	assert.NotNil(t, enableFlag)
-
-	vhostFlag := firehoseCmd.Flag("vhost")
-	assert.NotNil(t, vhostFlag)
 }
 
 func TestCommandExamples(t *testing.T) {
