@@ -52,4 +52,5 @@ var vpcGetCmd = &cobra.Command{
 func init() {
 	vpcGetCmd.Flags().StringP("id", "", "", "VPC ID (required)")
 	vpcGetCmd.MarkFlagRequired("id")
+	vpcGetCmd.RegisterFlagCompletionFunc("id", completeVPCIDFlag)
 }

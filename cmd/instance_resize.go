@@ -26,7 +26,8 @@ Note: Due to restrictions from cloud providers, it's only possible to resize the
 Available disk sizes: 0, 25, 50, 100, 250, 500, 1000, 2000 GB`,
 	Example: `  cloudamqp instance resize 1234 --disk-size=100
   cloudamqp instance resize 1234 --disk-size=250 --allow-downtime`,
-	Args: cobra.ExactArgs(1),
+	Args:              cobra.ExactArgs(1),
+	ValidArgsFunction: completeInstances,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		var err error
 		apiKey, err = getAPIKey()

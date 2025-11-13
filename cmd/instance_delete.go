@@ -21,7 +21,8 @@ var instanceDeleteCmd = &cobra.Command{
 WARNING: This action cannot be undone. All data will be lost.`,
 	Example: `  cloudamqp instance delete 1234
   cloudamqp instance delete 1234 --force`,
-	Args: cobra.ExactArgs(1),
+	Args:              cobra.ExactArgs(1),
+	ValidArgsFunction: completeInstances,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		var err error
 		apiKey, err = getAPIKey()

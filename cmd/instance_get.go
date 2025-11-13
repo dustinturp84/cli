@@ -58,4 +58,5 @@ var instanceGetCmd = &cobra.Command{
 func init() {
 	instanceGetCmd.Flags().StringP("id", "", "", "Instance ID (required)")
 	instanceGetCmd.MarkFlagRequired("id")
+	instanceGetCmd.RegisterFlagCompletionFunc("id", completeInstanceIDFlag)
 }

@@ -23,7 +23,8 @@ You can update the following fields:
   --tags: VPC tags (replaces existing tags)`,
 	Example: `  cloudamqp vpc update 5678 --name=new-vpc-name
   cloudamqp vpc update 5678 --tags=production --tags=updated`,
-	Args: cobra.ExactArgs(1),
+	Args:              cobra.ExactArgs(1),
+	ValidArgsFunction: completeVPCArgs,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		var err error
 		apiKey, err = getAPIKey()

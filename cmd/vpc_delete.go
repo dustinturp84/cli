@@ -21,7 +21,8 @@ var vpcDeleteCmd = &cobra.Command{
 WARNING: This action cannot be undone. All instances in the VPC must be deleted first.`,
 	Example: `  cloudamqp vpc delete 5678
   cloudamqp vpc delete 5678 --force`,
-	Args: cobra.ExactArgs(1),
+	Args:              cobra.ExactArgs(1),
+	ValidArgsFunction: completeVPCArgs,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		var err error
 		apiKey, err = getAPIKey()

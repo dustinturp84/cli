@@ -26,7 +26,8 @@ You can update the following fields:
 	Example: `  cloudamqp instance update 1234 --name=new-name
   cloudamqp instance update 1234 --plan=rabbit-1
   cloudamqp instance update 1234 --tags=production --tags=updated`,
-	Args: cobra.ExactArgs(1),
+	Args:              cobra.ExactArgs(1),
+	ValidArgsFunction: completeInstances,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		var err error
 		apiKey, err = getAPIKey()
@@ -66,4 +67,5 @@ func init() {
 	instanceUpdateCmd.Flags().StringVar(&updateInstanceName, "name", "", "New instance name")
 	instanceUpdateCmd.Flags().StringVar(&updateInstancePlan, "plan", "", "New subscription plan")
 	instanceUpdateCmd.Flags().StringSliceVar(&updateInstanceTags, "tags", []string{}, "New instance tags")
+	instanceUpdateCmd.RegisterFlagCompletionFunc("plan", completePlans)
 }

@@ -385,6 +385,7 @@ func init() {
 	for _, cmd := range commands {
 		cmd.Flags().StringP("id", "", "", "Instance ID (required)")
 		cmd.MarkFlagRequired("id")
+		cmd.RegisterFlagCompletionFunc("id", completeInstanceIDFlag)
 	}
 
 	// Add node flags where applicable

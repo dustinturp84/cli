@@ -49,6 +49,45 @@ your-api-key-here
 
 - `CLOUDAMQP_APIKEY` - Your CloudAMQP API key
 
+### Shell Completion
+
+The CLI supports shell completion for zsh, providing:
+- Command and subcommand completion
+- Flag completion
+- Dynamic completion for instance IDs, VPC IDs, plan names, and regions (fetched from the API)
+
+#### Zsh Completion Setup
+
+**Option 1: Source in your shell session**
+
+Add to your `~/.zshrc`:
+```bash
+source <(cloudamqp completion zsh)
+```
+
+**Option 2: Install to completion directory**
+
+```bash
+cloudamqp completion zsh > "${fpath[1]}/_cloudamqp"
+```
+
+After installation, restart your shell or reload your configuration:
+```bash
+exec zsh
+```
+
+#### Testing Completion
+
+After setup, you can test completion by typing:
+```bash
+cloudamqp instance <TAB>          # Lists instance subcommands
+cloudamqp instance get --id <TAB> # Lists your instance IDs
+cloudamqp instance create --plan <TAB>   # Lists available plans
+cloudamqp instance create --region <TAB> # Lists available regions
+```
+
+Note: Dynamic completions (instance IDs, plans, regions) require a configured API key. Completion data is cached in `~/.cache/cloudamqp/` (clear with `rm -rf ~/.cache/cloudamqp/` if needed).
+
 ## Commands
 
 ### Instance Management

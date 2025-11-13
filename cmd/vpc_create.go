@@ -70,4 +70,6 @@ func init() {
 	vpcCreateCmd.MarkFlagRequired("name")
 	vpcCreateCmd.MarkFlagRequired("region")
 	vpcCreateCmd.MarkFlagRequired("subnet")
+
+	vpcCreateCmd.RegisterFlagCompletionFunc("region", completeRegions)
 }

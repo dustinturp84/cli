@@ -32,4 +32,5 @@ func init() {
 	rootCmd.AddCommand(plansCmd)
 	rootCmd.AddCommand(teamCmd)
 	rootCmd.AddCommand(auditCmd)
+	rootCmd.AddCommand(completionCmd)
 }

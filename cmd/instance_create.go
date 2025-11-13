@@ -129,4 +129,10 @@ func init() {
 	instanceCreateCmd.MarkFlagRequired("name")
 	instanceCreateCmd.MarkFlagRequired("plan")
 	instanceCreateCmd.MarkFlagRequired("region")
+
+	instanceCreateCmd.RegisterFlagCompletionFunc("plan", completePlans)
+	instanceCreateCmd.RegisterFlagCompletionFunc("region", completeRegions)
+	instanceCreateCmd.RegisterFlagCompletionFunc("vpc-id", completeVPCIDFlag)
+	instanceCreateCmd.RegisterFlagCompletionFunc("copy-from-id", completeCopyFromIDFlag)
+	instanceCreateCmd.RegisterFlagCompletionFunc("copy-settings", completeCopySettings)
 }
